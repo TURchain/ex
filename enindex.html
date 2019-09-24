@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="//at.alicdn.com/t/font_1369125_2xawxep6qqv.css">
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+		<script src="js/username.js"></script>
+		<script src="layer/layer.js"></script>
+		<title>TUR</title>
+	</head>
+	<body>
+		<div class="w100 m-dorp bg-fff fixed row jc-sb box-sd">
+			<div class="w8 pic100 pad-b-1 box-sd">
+				<img src="img/logo.png">
+			</div>
+			<div class="w84 m-ss fl ai-center row col-666">
+				<a href="enindex.html" class="on menu">
+					<div class="text-center">
+						<i class="iconfont m-none">&#xe60c;</i>
+						<p>Home</p>
+					</div>
+				</a>
+				<a href="entop-wallets.html" class="menu">
+					<div class="text-center">
+						<i class="iconfont m-none">&#xe60e;</i>
+						<p>Top Wallets</p>
+					</div>
+				</a>
+				<a href="endelegate-monitor.html" class="menu">
+					<div class="text-center">
+						<i class="iconfont m-none">&#xe619;</i>
+						<p>Delegate Monitor</p>
+					</div>
+				</a>			
+				<a href="index.html" class="menu">
+					<div class="text-center m-block">
+						<p>中文</p>
+					</div>
+				</a>
+				
+				<div class="mar-r-b-8 row jc-end flex" >
+					<input type="" placeholder="Find a block, transaction, address" name="" id="sltnamea" class="bor-rs2 pad-b-1 bor-f4f w50" />
+					<button type="button" id="sousuoa" class="col-fff fz20 mar-l-b-1 bor-rs3 pad-b-1 pad-lr-b-3 bg-318"><i class="iconfont">&#xe63d;</i></button>
+				</div>
+			</div>
+			<div class="w8 m-none dorp cursor pic100 pad-b-1 box-sd">
+				<img src="img/en.png" >
+				<div class="dorp_con box-sd pic100">
+					<a href="index.html"><img src="img/cn.png"></a>
+				</div>
+			</div>
+			<div class="w8 m-block text-center col-318 ai-center jc-center fz60 cursor pad-b-1 box-sd">
+				<i class="iconfont">&#xe654;</i>
+			</div>
+			
+				
+		</div>
+		<div class="split ">
+
+		</div>
+		<!-- 左侧 -->
+		<div class="w8 box-sd fixed m-none h100">
+			<div class="column text-center col-ccc fz20 mar-t300">
+				<a href="https://www.facebook.com/TurretGlobal/"><i class="iconfont pad-tb20">&#xe638;</i></a>
+				<a href="https://twitter.com/Turret4709"><i class="iconfont pad-tb20">&#xe89d;</i></a>
+				<a href="https://www.weibo.com/u/7216873688"><i class="iconfont pad-tb20">&#xe63e;</i></a>
+				<div class="drop">
+						<i class="iconfont pad-tb20">&#xe635;</i>
+						<div class="drop_con2 p100 a-fadein">
+							<div class="xs">
+								<img src="http://www.turc.io/public/webpic/20190828/c0924b25f84e09a4e9f02a9a6b193643.png">
+								<div class="xsj z-100 mar-t10 mar-l35"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		<!-- 内容 -->
+		<div class="w92 bg-f5f mar-t-b-8 mar-l-b-8">
+			<div class="w100 pad-b-2">
+				<div class="row wrap jc-sb">
+					<div class="box-sd-dbe bor-t-dbe text-center pad-b-1 fz20 w29">
+						Latest transactions and blocks
+					</div>
+					<div class="box-sd row wrap m-mar-t10 jc-sb pad-b-1 bor-t-e8e ai-center w68">
+						<div class="col-666 m-w50" id="height">
+							Height：<span v-cloak>{{height}}</span>
+						</div>
+						<div class="bor-r h-14 m-none"></div>
+						<div class="col-666 m-w50">
+							Network：TUR
+						</div>
+						<div class="bor-r h-14 m-none"></div>
+						<div class="col-666 m-w50" id="app">
+							Supply：<span v-cloak>{{supply/100000000}}€</span>
+						</div>
+						<div class="bor-r h-14 m-none"></div>
+						<div class="col-666 m-w50" id="count" >
+							Address：<span v-cloak>{{count}}</span>
+						</div>
+					</div>
+				</div>
+				<!-- 头部切换 -->
+				<div class="mar-t-b-4">
+					<a href="javascript:jiaoyi(0);" class="jiaoyi pad-b-1 pad-lr-b-3 col-666 box-sd" style="background: #fff"><span>Latest transactions</span></a>
+					<a href="javascript:qukuai(0);" class="qukuai pad-b-1  pad-lr-b-3 col-666 mar-l-b-1 box-sd"><span>Latest blocks</span></a>
+				</div>
+				<!-- 最新交易 -->
+				<div id="transactions" style="display: block;">
+					<div class="box-sd mar-t-b-1 pad-b-2 bg-fff">
+						<div class="row m-none jc-sb col-318 bold">
+							<div class="Hover">ID</div>
+							<div class="Hover w15">Timestamp</div>
+							<div class="Hover">	Sender</div>
+							<div class="Hover">Recipient</div>
+							<div class="Hover w8">Amount</div>
+							<div class="Hover w8">Fee</div>
+						</div>
+						<div v-for="data in datas" class="row jc-sb m-none zx">
+							<div v-cloak class="Hover">
+								<a :href="'entransaction.html?id='+data.id">{{usernameupdate(data.id)}}</a>
+							</div>
+							<div v-cloak class="Hover w15">{{getLocalTime(data.timestamp.unix)}}</div>
+							<div v-cloak class="Hover"><a :href="'enwallets.html?id='+data.sender">{{usernameupdate(data.sender)}}</a></div>
+							<div v-cloak class="Hover"><a :href="'enwallets.html?id='+data.recipient">{{usernameupdate(data.recipient)}}</a></div>
+							<div v-cloak class="Hover w8">{{data.amount/100000000}}€</div>
+							<div v-cloak class="Hover w8">{{data.fee/100000000}}€</div>
+						</div>
+						
+						
+						<div v-for="data in datas" class="row jc-sb m-block m-bor-b zx">
+							<div v-cloak class="Hover row">
+								<span class="m-w50">ID</span>
+								<span class="m-w50 text-right"><a :href="'entransaction.html?id='+data.id">{{usernameupdate(data.id)}}</a>
+							</div>
+							<div v-cloak class="Hover row">
+								<span class="m-w50">Timestamp</span>
+								<span class="m-w50 text-right">{{getLocalTime(data.timestamp.unix)}}</span>
+							</div>
+							<div v-cloak class="Hover row">
+								<span class="m-w50">Sender</span>
+								<span class="m-w50 text-right"><a :href="'enwallets.html?id='+data.sender">{{usernameupdate(data.sender)}}</a></span>
+							</div>
+							<div v-cloak class="Hover row">
+								<span class="m-w50">Recipient</span>
+								<span class="m-w50 text-right"><a :href="'enwallets.html?id='+data.recipient">{{usernameupdate(data.recipient)}}</a></span>
+							</div>
+							<div v-cloak class="Hover row">
+								<span class="m-w50">Amount</span>
+								<span class="m-w50 text-right">{{data.amount/100000000}}€</span>
+							</div>
+							<div v-cloak class="Hover row">
+								<span class="m-w50">Fee</span>
+								<span class="m-w50 text-right">{{data.fee/100000000}}€</span>
+							</div>
+						</div>
+						
+												
+						<div class="row jc-center mar-t-b-1">
+							<a href="javascript:qpage(this);" class="bg-dae bor-rs3 pad-b-05 pad-lr-b-4 mar-b-2"><span>Previous</span></a>
+							<a href="javascript:hpage(this);" class="bg-dae bor-rs3 pad-b-05 pad-lr-b-4 mar-b-2"><span>Next</span></a>
+						</div>
+					</div>
+				</div>
+				<!-- 最新区块 -->
+				<div id="blocks" style="display: none;">
+					<div class="box-sd mar-t-b-1  pad-b-2 bg-fff">
+						<div class="row jc-sb m-none col-318 bold">
+							<div class="Hover">ID</div>
+							<div class="Hover w8">Heigh</div>
+							<div class="Hover w15">Timestamp</div>
+							<div class="Hover w8">Transactions</div>
+							<div class="Hover">Generated by</div>
+							<div class="Hover w8">Total forged</div>
+							<div class="Hover w8">Fees</div>
+						</div>
+						<div v-for="data in datas" class="row m-none jc-sb zx">
+							<div v-cloak class="Hover">
+								<a :href="'enblock.html?id='+data.id">{{data.id}}</a>
+							</div>
+							<div v-cloak class="Hover w8">{{data.height}}</div>
+
+							<div v-cloak class="Hover w15">{{getLocalTime(data.timestamp.unix)}}</div>
+							<div v-cloak class="Hover w8">{{data.transactions}}</div>
+							<div v-cloak class="Hover"><a :href="'enwallets.html?id='+data.generator.address">{{data.generator.username}}</a></div>
+							<div v-cloak class="Hover w8">{{data.forged.total/100000000}}€</div>
+							<div v-cloak class="Hover w8">{{data.forged.fee/100000000}}€</div>
+						</div>
+						
+						<div v-for="data in datas" class="row m-block m-bor-b jc-sb zx">
+							<div v-cloak class="Hover row">
+								<span class="m-w50">ID</span>
+								<span class="m-w50 text-right"><a :href="'enblock.html?id='+data.id">{{data.id}}</a></span>
+							</div>
+							<div v-cloak class="Hover row">
+								<span class="m-w50">Heigh</span>
+								<span class="m-w50 text-right">{{data.height}}</span>
+							</div>
+
+							<div v-cloak class="Hover row">
+								<span class="m-w50">Timestamp</span>
+								<span class="m-w50 text-right">{{getLocalTime(data.timestamp.unix)}}</span>
+							</div>
+							<div v-cloak class="Hover row">
+								<span class="m-w50">Transactions</span>
+								<span class="m-w50 text-right">{{data.transactions}}</span>
+							</div>
+							<div v-cloak class="Hover row">
+								<span class="m-w50">Generated by</span>
+								<span class="m-w50 text-right"><a :href="'enwallets.html?id='+data.generator.address">{{data.generator.username}}</a></span>
+							</div>
+							<div v-cloak class="Hover row">
+								<span class="m-w50">Total forged</span>
+								<span class="m-w50 text-right">{{data.forged.total/100000000}}€</span>
+							</div>
+							<div v-cloak class="Hover row">
+								<span class="m-w50">Fees</span>
+								<span class="m-w50 text-right">{{data.forged.fee/100000000}}€</span>
+							</div>
+						</div>
+												
+						<div class="row text-center jc-center mar-t-b-1">
+							<a href="javascript:qpage(this);" class="bg-dae bor-rs3 pad-b-05 pad-lr-b-4 mar-b-2 w15"><span>Previous</span></a>
+							<a v-if="datas.length >= 1" href="javascript:hpage(this);" class="bg-dae bor-rs3 pad-b-05 pad-lr-b-4 mar-b-2 w15"><span>Next</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+		<script src="js/enapp.js"></script>
+		<script type="text/javascript">
+			//翻页
+			urlpage = 0
+
+			function qpage() {
+				if (urlpage <= 0) {
+					return false
+				}
+				var page = urlpage - 1
+				eval(funcname + "(" + page + ")")
+				urlpage = urlpage - 1
+			}
+
+			function hpage() {
+				var page = urlpage + 1
+				eval(funcname + "(" + page + ")")
+				urlpage = urlpage + 1
+			}
+
+			window.onload = function() {
+				vum2 = new Vue({
+					el: '#transactions',
+					data: {
+						datas: "",
+						hiddenPager: true, //是否显示分页
+					},
+					beforeCreate: function() {
+						$.ajax({
+							type: 'Get',
+							url: server_url + 'api/v2/transactions?orderBy=timestamp:desc&limit=25',
+							success: function(data) {
+								vum2.$set(vum2.$data, 'datas', data.data)
+								vum2.$forceUpdate();
+							}
+						})
+					}
+
+				})
+				vum3 = new Vue({
+					el: '#blocks',
+					data: {
+						datas: "",
+					},
+					beforeCreate: function() {
+						$.ajax({
+							type: 'Get',
+							url: server_url + 'api/v2/blocks?orderBy=height:desc&limit=25',
+							success: function(data) {
+								vum3.$set(vum3.$data, 'datas', data.data)
+								vum3.$forceUpdate();
+							}
+						})
+					}
+				})
+				//自动刷新
+				a = {};
+				var lastTimeValue = a.funcname;
+				Object.defineProperty(a, 'funcname', {
+					get: function() {
+						console.log('get：' + funcname);
+						return funcname;
+					},
+					set: function(value) {
+						funcname = value;
+						if (lastTimeValue != funcname) {
+							lastTimeValue = funcname;
+							if (funcname == 'jiaoyi') {
+								t1 = setInterval(function() {
+									jiaoyi(urlpage)
+								}, 5000);
+							} else {
+								clearInterval(t1)
+							}
+							if (funcname == 'qukuai') {
+								t2 = setInterval(function() {
+									qukuai(urlpage)
+								}, 5000);
+							} else {
+								clearInterval(t2)
+							}
+						}
+					}
+				});
+				a.funcname = 'jiaoyi'
+			}
+
+
+
+
+
+			$(document).ready(function() {
+				setTimeout(function() {
+					$(".Hover").on("mouseenter", function() {
+						if (this.offsetWidth < this.scrollWidth) {
+							var that = this;
+							var text = $(this).text();
+							console.log(text);
+							layer.tips(text, that, {
+								tips: [1, '#3185ee'],
+								time: 2000
+							});
+						}
+					});
+				}, 1000);
+			});
+
+
+			function jiaoyi(page) { //交易
+
+				$('.jiaoyi').css('background', '#ffffff')
+				$('.qukuai').css('background', '')
+				$('#blocks').css('display', 'none')
+				$('#transactions').css('display', 'block')
+				$.ajax({
+					type: 'Get',
+					url: server_url + 'api/v2/transactions?orderBy=timestamp:desc&limit=25&offset=' + page,
+
+					success: function(data) {
+						vum2.$set(vum2.$data, 'datas', data.data)
+						vum2.$forceUpdate();
+					}
+				})
+				a.funcname = 'jiaoyi'
+			}
+
+
+
+			function qukuai(page) { //区块
+				$('.qukuai').css('background', '#ffffff')
+				$('.jiaoyi').css('background', '')
+				$('#transactions').css('display', 'none')
+				$('#blocks').css('display', 'block')
+				$.ajax({
+					type: 'Get',
+					url: server_url + 'api/v2/blocks?orderBy=height:desc&limit=25&offset=' + page,
+
+					success: function(data) {
+						vum3.datas = data.data;
+						vum3.$forceUpdate();
+					}
+				})
+				a.funcname = 'qukuai'
+			}
+		</script>
+
+
+
+
+
+
+	</body>
+
+</html>

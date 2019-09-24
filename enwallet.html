@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="//at.alicdn.com/t/font_1369125_2xawxep6qqv.css">
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+		<script src="js/username.js"></script>
+		<script src="layer/layer.js"></script>
+		<title>TUR-Wallet summary</title>
+	</head>
+	<body>
+		<div class="w100 m-dorp bg-fff fixed row jc-sb box-sd">
+			<div class="w8 pic100 pad-b-1 box-sd">
+				<img src="img/logo.png">
+			</div>
+			<div class="w84 m-ss fl ai-center row col-666">
+				<a href="enindex.html" class="menu">
+					<div class="text-center">
+						<i class="iconfont m-none">&#xe60c;</i>
+						<p>Home</p>
+					</div>
+				</a>
+				<a href="entop-wallets.html" class="on menu">
+					<div class="text-center">
+						<i class="iconfont m-none">&#xe60e;</i>
+						<p>Top Wallets</p>
+					</div>
+				</a>
+				<a href="endelegate-monitor.html" class="menu">
+					<div class="text-center">
+						<i class="iconfont m-none">&#xe619;</i>
+						<p>Delegate Monitor</p>
+					</div>
+				</a>				
+				<a href="index.html" class="menu">
+					<div class="text-center m-block">
+						<p>中文</p>
+					</div>
+				</a>
+				
+				<div class="mar-r-b-8 row jc-end flex" >
+					<input type="" placeholder="Find a block, transaction, address" name="" id="sltnamea" class="bor-rs2 pad-b-1 bor-f4f w50" />
+					<button type="button" id="sousuoa" class="col-fff fz20 mar-l-b-1 bor-rs3 pad-b-1 pad-lr-b-3 bg-318"><i class="iconfont">&#xe63d;</i></button>
+				</div>
+			</div>
+			<div class="w8 m-none dorp cursor pic100 pad-b-1 box-sd">
+				<img src="img/en.png" >
+				<div class="dorp_con box-sd pic100">
+					<a href="index.html"><img src="img/cn.png"></a>
+				</div>
+			</div>
+			<div class="w8 m-block text-center col-318 ai-center jc-center fz60 cursor pad-b-1 box-sd">
+				<i class="iconfont">&#xe654;</i>
+			</div>
+			
+				
+		</div>
+		<div class="split ">
+
+		</div>
+		<!-- 左侧 -->
+		<div class="w8 box-sd fixed m-none h100">
+			<div class="column text-center col-ccc fz20 mar-t300">
+				<a href="https://www.facebook.com/TurretGlobal/"><i class="iconfont pad-tb20">&#xe638;</i></a>
+				<a href="https://twitter.com/Turret4709"><i class="iconfont pad-tb20">&#xe89d;</i></a>
+				<a href="https://www.weibo.com/u/7216873688"><i class="iconfont pad-tb20">&#xe63e;</i></a>
+				<div class="drop">
+						<i class="iconfont pad-tb20">&#xe635;</i>
+						<div class="drop_con2 p100 a-fadein">
+							<div class="xs">
+								<img src="http://www.turc.io/public/webpic/20190828/c0924b25f84e09a4e9f02a9a6b193643.png">
+								<div class="xsj z-100 mar-t10 mar-l35"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+		<!-- 内容 -->
+		<div class="w92 bg-f5f mar-t-b-8 mar-l-b-8">
+			<div class="w100 pad-b-2">
+				<div class="row wrap jc-sb">
+					<div class="box-sd-dbe bor-t-dbe text-center pad-b-1 fz20 w29">
+						Wallet summary
+					</div>
+					<div class="box-sd row wrap m-mar-t10 jc-sb pad-b-1 bor-t-e8e ai-center w68">
+						<div class="col-666 m-w50" id="height">
+							Height：<span v-cloak>{{height}}</span>
+						</div>
+						<div class="bor-r h-14 m-none"></div>
+						<div class="col-666 m-w50">
+							Network：TUR
+						</div>
+						<div class="bor-r h-14 m-none"></div>
+						<div class="col-666 m-w50" id="app">
+							Supply：<span v-cloak>{{supply/100000000}}€</span>
+						</div>
+						<div class="bor-r h-14 m-none"></div>
+						<div class="col-666 m-w50" id="count" >
+							Address：<span v-cloak>{{count}}</span>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="box-sd mar-t-b-4 pad-b-2 bg-fff ">
+					<div class="row m-wrap jc-sb ai-center">
+						<div class="h-60 w10" id="add">
+							<div id="addressss"></div>
+						</div>
+				
+						<div class="row w100 m-wrap ai-center jc-sb" id="transaction">
+							<div class="column w80">
+								<p class="fz16 tab-p" v-cloak>Address <a class="uuser bold fz16" :href="'enwallets.html?id='+datas.address">{{usernameupdate(datas.address)}}</a></p>
+								<div class="row m-jc-sb ai-center" id="Uaddress">
+									<div class="m-w80 ccsl">
+										<span id="keydiv">
+											<p class="ccsl" id="address"></p>
+										</span>
+									</div>
+									<btn class="pad-l10" onclick="copyText()">Copy</btn>
+								</div>
+								<div id="publicKey" class="row m-jc-sb ai-center" style="display: none;" v-cloak>
+									<div class="m-w80 ccsl ">
+										<span id="keydiv2">{{datas.publicKey}}</span>
+									</div>
+									<btn class="pad-l10" onclick="copyText2()">Copy</btn>
+								</div>
+							</div>				
+							<div class="text-center w15 m-none  m-w15 jc-end">
+								<p class="fz-18">Balance(TUR)</p>
+								<div v-cloak>{{datas.balance/100000000}}€</div>
+							</div>
+						</div>				
+							<div class="text-center w15 m-block m-w15 jc-end">
+								<p class="fz-18">Balance(TUR)</p>
+								<div><span id="balance">0</span>T</div>
+							</div>
+							<div class="w-1  h-30 bg-ccc"></div>
+							<div class="text-center w15 m-w15 jc-end" id="voting">
+								<p class="fz-18">Voting for</p>
+								<a class="bold" :href="'enwallet.html?id='+datas.address"><span v-cloak>{{datas.username}}</span></a>
+							</div>
+							<div class="w-1 h-30 bg-ccc"></div>
+							<div class="col-ccc w15 m-w15 h100 row  jc-sb fz30">
+								<div class="w-1"></div>
+								<i class="iconfont address cursor" style="color: #3185ee;">&#xe668;</i>
+								<div class="w-1 bg-ccc m-none"></div>
+								<i class="iconfont publicKey cursor">&#xeae6;</i>
+							</div>
+					</div>
+				</div>
+
+
+
+
+
+
+
+
+
+				<div id="daibiao" class="box-sd mar-tb-b-4 bg-fff ">
+					<div class="row jc-sb ai-center pad-lr-b-2 pad-tb-b-1 bor-b">
+						<span>Username</span>
+						<span class="ccsl" v-cloak>{{datas.username}}</span>
+					</div>
+					<div class="row jc-sb ai-center pad-lr-b-2 pad-tb-b-1 bor-b">
+						<span>Rank</span>
+						<span class="ccsl" v-cloak>{{datas.rank}}</span>
+					</div>
+					<div class="row jc-sb ai-center pad-lr-b-2 pad-tb-b-1 bor-b">
+						<span>Votes</span>
+						<span class="ccsl" v-cloak><span class="fz12 col-666">{{datas.production.approval}}%</span>
+							{{datas.votes/100000000}}€</span>
+					</div>
+					<div class="row jc-sb ai-center pad-lr-b-2 pad-tb-b-1 bor-b">
+						<span>Total forged</span>
+						<span class="ccsl" v-cloak>{{datas.forged.total/100000000}}€</span>
+					</div>
+					<div class="row jc-sb ai-center pad-lr-b-2 pad-tb-b-1 bor-b">
+						<span>Forged blocks</span>
+						<span class="ccsl" v-cloak>{{datas.blocks.produced}} <a :href="'enblocks.html?id='+id">See all</a></span>
+					</div>
+					<div class="row jc-sb ai-center pad-lr-b-2 pad-tb-b-1 bor-b">
+						<span>Voters</span>
+						<span class="ccsl" v-cloak><span id="Voters">0</span> <a :href="'enxuanmin.html?id='+id">See all</a></span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
+		<script src="js/enapp.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$(".publicKey").click(function() {
+					$('#publicKey').show(100);
+					$('#address').hide(100);
+					$('#Uaddress').hide(100);
+					$('.publicKey').css("color", "#3185ee");
+					$('.address').css("color", "#ccc");
+					$(".tab-p").text("Public key");
+				});
+				$(".address").click(function() {
+					$('#address').show(100);
+					$('#Uaddress').show(100);
+					$('#publicKey').hide(100);
+					$('.address').css("color", "#3185ee");
+					$('.publicKey').css("color", "#ccc");
+					$(".tab-p").text("Address");
+				});
+				setTimeout(function() {
+					var uuser = $("div").find(".uuser").text()
+					var gid = getParam('id');
+					if (uuser == gid) {
+						$(".uuser").text("")
+					}
+				}, 1000);
+
+			});
+
+
+			$('#add').on('click', function() {
+				//var erweima = $('#addressss').html()
+				//console.log(erweima)
+				var aaa = '<div id="code"></div>'
+				layer.alert(aaa, {
+					type: 1,
+					title: '二维码',
+					shadeClose: true,
+					area: ['300px', '300px']
+				})
+				$('#code').qrcode(id)
+				// layer.open({
+				//  title: '二维码',
+				//   type: 1,
+				//  area: ['300px', '300px'],
+				//  shadeClose:false,
+				//  closeBtn:0,
+				//   content:$('#addressss')
+				// });
+
+			});
+
+			var id = getParam('id')
+			$('#address').html(id)
+			// $('#addressss').qrcode(id)
+
+			jQuery('#addressss').qrcode({
+			    render: "canvas", //也可以替换为table
+			    foreground: "#3185ee",
+			    background: "#FFF",
+			    text: getParam('id')
+			});
+			
+			// $('#addresss').attr('href', 'enwallets.html?id=' + id)
+			var vum2 = new Vue({
+				el: '#transaction',
+				data: {
+					datas: "",
+				},
+				beforeCreate: function() {
+					$.ajax({
+						type: 'Get',
+						url: server_url + "api/v2/wallets/" + id,
+						success: function(data) {
+							vum2.datas = data.data;
+							$('#balance').html(vum2.datas.balance/100000000)
+						}
+					})
+				}
+			})
+
+
+			var vum6 = new Vue({
+				el: '#daibiao',
+				data: {
+					datas: "",
+				},
+				beforeCreate: function() {
+					$.ajax({
+						type: 'Get',
+						url: server_url + "api/v2/delegates/" + id,
+						success: function(data) {
+							vum6.datas = data.data;						
+						}
+					})
+				}
+			})
+
+			var vum7 = new Vue({
+				el: '#Voters',
+				data: {
+					datas: "",
+				},
+				beforeCreate: function() {
+					$.ajax({
+						type: 'Get',
+						url: server_url + "api/v2/delegates/" + id + "/voters?page=1&limit=1",
+						success: function(data) {
+							vum7.datas = data.meta;
+							$('#Voters').html(vum7.datas.pageCount)				
+
+						}
+					})
+				}
+			})
+
+			var vum8 = new Vue({
+				el: '#voting',
+				data: {
+					datas: "",
+				},
+				beforeCreate: function() {
+					$.ajax({
+						type: 'Get',
+						url: server_url + "api/accounts/delegates?address=" + id,
+						success: function(data) {
+							if (data.success) {
+								vum8.datas = data.delegates[0];
+								$('#Vname').html(vum8.datas.username)
+								$('#Vadd').attr('href', 'enwallets.htmls?id=' + vum8.datas.address)
+							}
+
+						}
+					})
+				}
+			})
+		</script>
+
+
+
+	</body>
+
+</html>

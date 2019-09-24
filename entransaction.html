@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="//at.alicdn.com/t/font_1369125_2xawxep6qqv.css">
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+		<script src="js/username.js"></script>
+		<script src="layer/layer.js"></script>
+		<title>TUR-交易明细</title>
+	</head>
+	<body>
+		<div class="w100 m-dorp bg-fff fixed row jc-sb box-sd">
+			<div class="w8 pic100 pad-b-1 box-sd">
+				<img src="img/logo.png">
+			</div>
+			<div class="w84 m-ss fl ai-center row col-666">
+				<a href="enindex.html" class="menu">
+					<div class="text-center">
+						<i class="iconfont m-none">&#xe60c;</i>
+						<p>Home</p>
+					</div>
+				</a>
+				<a href="entop-wallets.html" class="on menu">
+					<div class="text-center">
+						<i class="iconfont m-none">&#xe60e;</i>
+						<p>Top Wallets</p>
+					</div>
+				</a>
+				<a href="endelegate-monitor.html" class="menu">
+					<div class="text-center">
+						<i class="iconfont m-none">&#xe619;</i>
+						<p>Delegate Monitor</p>
+					</div>
+				</a>				
+				<a href="index.html" class="menu">
+					<div class="text-center m-block">
+						<p>中文</p>
+					</div>
+				</a>
+				
+				<div class="mar-r-b-8 row jc-end flex" >
+					<input type="" placeholder="Find a block, transaction, address" name="" id="sltnamea" class="bor-rs2 pad-b-1 bor-f4f w50" />
+					<button type="button" id="sousuoa" class="col-fff fz20 mar-l-b-1 bor-rs3 pad-b-1 pad-lr-b-3 bg-318"><i class="iconfont">&#xe63d;</i></button>
+				</div>
+			</div>
+			<div class="w8 m-none dorp cursor pic100 pad-b-1 box-sd">
+				<img src="img/en.png" >
+				<div class="dorp_con box-sd pic100">
+					<a href="index.html"><img src="img/cn.png"></a>
+				</div>
+			</div>
+			<div class="w8 m-block text-center col-318 ai-center jc-center fz60 cursor pad-b-1 box-sd">
+				<i class="iconfont">&#xe654;</i>
+			</div>
+			
+				
+		</div>
+		<div class="split ">
+
+		</div>
+		<!-- 左侧 -->
+		<div class="w8 box-sd fixed m-none h100">
+			<div class="column text-center col-ccc fz20 mar-t300">
+				<a href="https://www.facebook.com/TurretGlobal/"><i class="iconfont pad-tb20">&#xe638;</i></a>
+				<a href="https://twitter.com/Turret4709"><i class="iconfont pad-tb20">&#xe89d;</i></a>
+				<a href="https://www.weibo.com/u/7216873688"><i class="iconfont pad-tb20">&#xe63e;</i></a>
+				<div class="drop">
+						<i class="iconfont pad-tb20">&#xe635;</i>
+						<div class="drop_con2 p100 a-fadein">
+							<div class="xs">
+								<img src="http://www.turc.io/public/webpic/20190828/c0924b25f84e09a4e9f02a9a6b193643.png">
+								<div class="xsj z-100 mar-t10 mar-l35"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<!-- 内容 -->
+		<div class="w92 bg-f5f mar-t-b-8 mar-l-b-8">
+			<div class="w100 pad-b-2">
+				<div class="row wrap jc-sb">
+					<div class="box-sd-dbe bor-t-dbe text-center pad-b-1 fz20 w29">
+						交易明细
+					</div>
+					<div class="box-sd row wrap m-mar-t10 jc-sb pad-b-1 bor-t-e8e ai-center w68">
+						<div class="col-666 m-w50" id="height">
+							Height：<span v-cloak>{{height}}</span>
+						</div>
+						<div class="bor-r h-14 m-none"></div>
+						<div class="col-666 m-w50">
+							Network：TUR
+						</div>
+						<div class="bor-r h-14 m-none"></div>
+						<div class="col-666 m-w50" id="app">
+							Supply：<span v-cloak>{{supply/100000000}}€</span>
+						</div>
+						<div class="bor-r h-14 m-none"></div>
+						<div class="col-666 m-w50" id="count" >
+							Address：<span v-cloak>{{count}}</span>
+						</div>
+					</div>
+				</div>
+
+				<div id="transactions">
+					<div class="box-sd mar-t-b-4 pad-b-2 bg-fff ">
+						<div class="row ai-center">
+							<div class="w8 fz30 col-fff m-none">
+								<i class="iconfont iconfont2 bg-318 pad-b-15 bor-rs10 ">&#xe663;</i>
+							</div>							
+							<div class="column w100 ">
+								<p class="fz16 text-left bold">交易ID</p>
+								<div class="m-block">
+									<div class="row m-jc-sb ai-center">
+										<div class="m-w80 ccsl" v-cloak>
+											<span id="keydiv">{{datas.id}}</span>
+										</div>
+										<btn class="pad-l10" onclick="copyText()">Copy</btn>
+									</div>									
+								</div>
+								<div class="text-left m-none" v-cloak>
+									<span id="keydiv">{{datas.id}}</span>								
+									<btn class="pad-l10" onclick="copyText()">Copy</btn>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="box-sd mar-tb-b-4 col-666 bg-fff ">
+						<div class="row jc-sb ai-center pad-lr-b-2 pad-tb-b-1 bor-b">
+							<span>Sender</span>
+							<span class="m-w50 text-right ccsl" v-cloak>{{datas.sender}}</span>
+						</div>
+						<div class="row jc-sb ai-center pad-lr-b-2 pad-tb-b-1 bor-b">
+							<span>接受者</span>
+							<span class="m-w50 text-right ccsl" v-cloak>{{datas.recipient}}</span>
+						</div>
+						<div class="row jc-sb ai-center pad-lr-b-2 pad-tb-b-1 bor-b">
+							<span>Amount</span>
+							<span class="m-w50 text-right ccsl" v-cloak>{{datas.amount/100000000}}€</span>
+						</div>
+						<div class="row jc-sb ai-center pad-lr-b-2 pad-tb-b-1 bor-b">
+							<span>Fee</span>
+							<span class="m-w50 text-right ccsl" v-cloak>{{datas.fee/100000000}}€</span>
+						</div>
+						<div class="row jc-sb ai-center pad-lr-b-2 pad-tb-b-1 bor-b">
+							<span>Timestamp</span>
+							<span class="m-w50 text-right ccsl" v-cloak>{{getLocalTime(datas.timestamp.unix)}}</span>
+						</div>
+						<div class="row jc-sb ai-center pad-lr-b-2 pad-tb-b-1 bor-b">
+							<span>Block ID</span>
+							<span class="m-w50 text-right ccsl" v-cloak>{{datas.blockId}}</span>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
+		<script src="js/enapp.js"></script>
+		<script type="text/javascript">
+			var id = getParam('id')
+			var vum2 = new Vue({
+				el: '#transactions',
+				data: {
+					datas: "",
+				},
+				beforeCreate: function() {
+					$.ajax({
+						type: 'Get',
+						url: server_url + "api/v2/transactions/" + id,
+
+						success: function(data) {
+							vum2.datas = data.data;
+							console.log(vum2.datas)
+						}
+					})
+				}
+			})
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="//at.alicdn.com/t/font_1369125_2xawxep6qqv.css">
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
+		<script src="js/username.js"></script>
+		<script src="layer/layer.js"></script>
+		<title>TUR-交易明细</title>
+	</head>
+	<body>
+		<div class="w100 m-dorp bg-fff fixed row jc-sb box-sd">
+			<div class="w8 pic100 pad-b-1 box-sd">
+				<img src="img/logo.png">
+			</div>
+			<div class="w84 m-ss fl ai-center row col-666">
+				<a href="index.html" class="menu">
+					<div class="text-center">
+						<i class="iconfont m-none">&#xe60c;</i>
+						<p>首页</p>
+					</div>
+				</a>
+				<a href="top-wallets.html" class="on menu">
+					<div class="text-center">
+						<i class="iconfont m-none">&#xe60e;</i>
+						<p>钱包</p>
+					</div>
+				</a>
+				<a href="delegate-monitor.html" class="menu">
+					<div class="text-center">
+						<i class="iconfont m-none">&#xe619;</i>
+						<p>节点</p>
+					</div>
+				</a>
+				<a href="enindex.html" class="menu">
+					<div class="text-center m-block">
+						<p>English</p>
+					</div>
+				</a>
+
+				<div class="mar-r-b-8 row jc-end flex">
+					<input type="" placeholder="请输入搜索内容" name="" id="sltnamea" class="bor-rs2 pad-b-1 bor-f4f w40" />
+					<button type="button" id="sousuoa" class="col-fff fz20 mar-l-b-1 bor-rs3 pad-b-1 pad-lr-b-3 bg-318"><i class="iconfont">&#xe63d;</i></button>
+				</div>
+			</div>
+			<div class="w8 m-none dorp cursor pic100 pad-b-1 box-sd">
+				<img src="img/cn.png">
+				<div class="dorp_con box-sd pic100">
+					<a href="enindex.html"><img src="img/en.png"></a>
+				</div>
+			</div>
+			<div class="w8 m-block text-center col-318 ai-center jc-center fz60 cursor pad-b-1 box-sd">
+				<i class="iconfont">&#xe654;</i>
+			</div>
+
+
+		</div>
+		<div class="split ">
+
+		</div>
+		<!-- 左侧 -->
+		<div class="w8 box-sd fixed m-none h100">
+			<div class="column text-center col-ccc fz20 mar-t300">
+				<a href="https://www.facebook.com/TurretGlobal/"><i class="iconfont pad-tb20">&#xe638;</i></a>
+				<a href="https://twitter.com/Turret4709"><i class="iconfont pad-tb20">&#xe89d;</i></a>
+				<a href="https://www.weibo.com/u/7216873688"><i class="iconfont pad-tb20">&#xe63e;</i></a>
+				<div class="drop">
+						<i class="iconfont pad-tb20">&#xe635;</i>
+						<div class="drop_con2 p100 a-fadein">
+							<div class="xs">
+								<img src="http://www.turc.io/public/webpic/20190828/c0924b25f84e09a4e9f02a9a6b193643.png">
+								<div class="xsj z-100 mar-t10 mar-l35"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+		<!-- 内容 -->
+		<div class="w92 bg-f5f mar-t-b-8 mar-l-b-8">
+			<div class="w100 pad-b-2">
+				<div class="row wrap jc-sb">
+					<div class="box-sd-dbe bor-t-dbe text-center pad-b-1 fz20 w18">
+						交易明细
+					</div>
+					<div class="box-sd row wrap m-mar-t10 jc-sb pad-b-1 bor-t-e8e ai-center w80">
+						<div class="col-666 m-w50" id="height">
+							高度：<span v-cloak>{{height}}</span>
+						</div>
+						<div class="bor-r h-14 m-none"></div>
+						<div class="col-666 m-w50">
+							网络：TUR
+						</div>
+						<div class="bor-r h-14 m-none"></div>
+						<div class="col-666 m-w50" id="app">
+							供应：<span v-cloak>{{supply/100000000}}€</span>
+						</div>
+						<div class="bor-r h-14 m-none"></div>
+						<div class="col-666 m-w50" id="count">
+							账户地址：<span v-cloak>{{count}}名</span>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="box-sd mar-t-b-4 pad-b-2 bg-fff ">
+					<div class="row m-wrap jc-sb ai-center">
+						<div class="h-60 w10" id="add">
+							<div id="addressss"></div>
+						</div>
+
+						<div class="row w100 m-wrap ai-center jc-sb" id="transaction">
+							<div class="column w80">
+								<p class="fz16 tab-p" v-cloak>地址 <a class="uuser bold fz16" :href="'wallets.html?id='+datas.address">{{usernameupdate(datas.address)}}</a></p>
+								<div class="row m-jc-sb ai-center" id="Uaddress">
+									<div class="m-w80 ccsl">
+										<span id="keydiv">
+											<p class="ccsl" id="address"></p>
+										</span>
+									</div>
+									<btn class="pad-l10" onclick="copyText()">复制</btn>
+								</div>
+								<div id="publicKey" class="row m-jc-sb ai-center" style="display: none;" v-cloak>
+									<div class="m-w80 ccsl ">
+										<span id="keydiv2">{{datas.publicKey}}</span>
+									</div>
+									<btn class="pad-l10" onclick="copyText2()">复制</btn>
+								</div>
+							</div>
+
+							<div class="text-center w15 jc-end">
+								<p class="fz-18">余额(TUR)</p>
+								<div v-cloak>{{datas.balance/100000000}}€</div>
+							</div>
+							<div class="w-1 h-30 bg-ccc"></div>
+							<div class="col-ccc w15 h100 row  jc-sb fz30">
+								<div class="w-1"></div>
+								<i class="iconfont address cursor" style="color: #3185ee;">&#xe668;</i>
+								<div class="w-1 bg-ccc m-none"></div>
+								<i class="iconfont publicKey cursor">&#xeae6;</i>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div class="container">
+
+
+
+					<div class="mar-t-b-4">
+						<a href="javascript:transactions(0);" class="_transactions pad-b-1 pad-lr-b-3 box-sd" style="background: #fff"><span>全部</span></a>
+						<a href="javascript:senderId(0);" class="_senderId pad-b-1  pad-lr-b-3 mar-l-b-1 box-sd"><span>发送</span></a>
+						<a href="javascript:recipientId(0);" class="_recipientId pad-b-1  pad-lr-b-3 mar-l-b-1 box-sd"><span>收到</span></a>
+					</div>
+
+					<div id="transactions">
+						<div id="transactions" style="display: block;">
+							<div class="box-sd mar-t-b-1 pad-b-2 bg-fff">
+								<div class="row m-none jc-sb col-318 bold">
+									<div class="Hover">ID</div>
+									<div class="Hover w15">时间戳</div>
+									<div class="Hover">发送者</div>
+									<div class="Hover">接收者</div>
+									<div class="Hover w8">数量</div>
+									<div class="Hover w8">手续费</div>
+								</div>
+								<div v-for="data in datas" class="row m-none jc-sb zx">
+									<template v-if="data.recipientId">
+										<div v-cloak class="Hover">
+											<a :href="'transaction.html?id='+data.id">{{data.id}}</a>
+										</div>
+										<div v-cloak class="Hover w15">{{getLocalTime(data.timestamp.unix)}}</div>
+										<div v-cloak class="Hover"><a :href="'wallets.html?id='+data.sender">{{usernameupdate(data.sender)}}</a></div>
+										<div v-cloak class="Hover"><a :href="'wallets.html?id='+data.recipient">{{usernameupdate(data.recipient)}}</a></div>
+										<div v-cloak class="Hover w8" style="color: #46b02e">{{data.amount/100000000}}€</div>
+										<div v-cloak class="Hover w8">{{data.fee/100000000}}€</div>
+									</template>
+									<template v-else>
+										<div v-cloak class="Hover">
+											<a :href="'transaction.html?id='+data.id">{{data.id}}</a>
+										</div>
+										<div v-cloak class="Hover w15">{{getLocalTime(data.timestamp.unix)}}</div>
+										<div v-cloak class="Hover"><a :href="'wallets.html?id='+data.sender">{{usernameupdate(data.sender)}}</a></div>
+										<div v-cloak class="Hover"><a :href="'wallets.html?id='+data.recipient">{{usernameupdate(data.recipient)}}</a></div>
+										<div v-cloak class="Hover w8" style="color: #ef192d">{{data.amount/100000000}}€</div>
+										<div v-cloak class="Hover w8">{{data.fee/100000000}}€</div>
+									</template>
+								</div>
+								
+								<div v-for="data in datas" class="row m-block m-bor-b jc-sb zx">
+									<template v-if="data.recipientId">
+										<div v-cloak class="Hover row">
+											<span class="m-w50">ID</span>
+											<span class="m-w50 text-right"><a :href="'transaction.html?id='+data.id">{{data.id}}</a></span>
+										</div>
+										<div v-cloak class="Hover row">
+											<span class="m-w50">时间戳</span>
+											<span class="m-w50 text-right">{{getLocalTime(data.timestamp.unix)}}</span>
+										</div>
+										<div v-cloak class="Hover row">
+											<span class="m-w50">发送者</span>
+											<span class="m-w50 text-right"><a :href="'wallets.html?id='+data.sender">{{usernameupdate(data.sender)}}</a></span>
+										</div>
+										<div v-cloak class="Hover row">
+											<span class="m-w50">接收者</span>
+											<span class="m-w50 text-right"><a :href="'wallets.html?id='+data.recipient">{{usernameupdate(data.recipient)}}</a></span>
+										</div>
+										<div v-cloak class="Hover row" style="color: #46b02e">
+											<span class="m-w50">数量</span>
+											<span class="m-w50 text-right">{{data.amount/100000000}}€</span>
+										</div>
+										<div v-cloak class="Hover row">
+											<span class="m-w50">手续费</span>
+											<span class="m-w50 text-right">{{data.fee/100000000}}€</span>
+										</div>
+									</template>
+									<template v-else>
+										<div v-cloak class="Hover row">
+											<span class="m-w50">ID</span>
+											<span class="m-w50 text-right"><a :href="'transaction.html?id='+data.id">{{data.id}}</a></span>
+										</div>
+										<div v-cloak class="Hover row">
+											<span class="m-w50">时间戳</span>
+											<span class="m-w50 text-right">{{getLocalTime(data.timestamp.unix)}}</span>
+										</div>
+										<div v-cloak class="Hover row">
+											<span class="m-w50">发送者</span>
+											<span class="m-w50 text-right"><a :href="'wallets.html?id='+data.sender">{{usernameupdate(data.sender)}}</a></span>
+										</div>
+										<div v-cloak class="Hover row">
+											<span class="m-w50">接收者</span>
+											<span class="m-w50 text-right"><a :href="'wallets.html?id='+data.recipient">{{usernameupdate(data.recipient)}}</a></span>
+										</div>
+										<div v-cloak class="Hover row" style="color: #ef192d">
+											<span class="m-w50">数量</span>
+											<span class="m-w50 text-right">{{data.amount/100000000}}€</span>
+										</div>
+										<div v-cloak class="Hover row">
+											<span class="m-w50">手续费</span>
+											<span class="m-w50 text-right">{{data.fee/100000000}}€</span>
+										</div>
+									</template>
+								</div>
+								
+								<!-- 分页 -->
+								<div class="row jc-center text-center mar-t-b-1">
+									<a id="qpage" href="javascript:qpage();" class="bg-dae bor-rs3 pad-b-05 pad-lr-b-4 mar-b-2 w15"><span class="">上一页</span></a>
+									<a id="hpage" v-if="datas.length >= 10" href="javascript:hpage();" class="bg-dae bor-rs3 pad-b-05 pad-lr-b-4 mar-b-2 w15"><span
+										 class="">下一页</span></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="js/jquery.qrcode.min.js"></script>
+		<script src="js/app.js"></script>
+
+
+
+
+
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$(".publicKey").click(function() {
+					$('#publicKey').show(100);
+					$('#address').hide(100);
+					$('#Uaddress').hide(100);
+					$('.publicKey').css("color", "#3185ee");
+					$('.address').css("color", "#ccc");
+					$(".tab-p").text("Public key");
+				});
+				$(".address").click(function() {
+					$('#address').show(100);
+					$('#Uaddress').show(100);
+					$('#publicKey').hide(100);
+					$('.address').css("color", "#3185ee");
+					$('.publicKey').css("color", "#ccc");
+					$(".tab-p").text("地址");
+				});
+				setTimeout(function() {
+					$(".Hover").on("mouseenter", function() {
+						if (this.offsetWidth < this.scrollWidth) {
+							var that = this;
+							var text = $(this).text();
+							layer.tips(text, that, {
+								tips: [1, '#3185ee'],
+								time: 2000
+							});
+						}
+					});
+					var uuser = $("div").find(".uuser").text()
+					var gid = getParam('id');
+					if (uuser == gid) {
+						$(".uuser").text("")
+					}
+				}, 1000);
+
+
+
+
+
+
+
+
+
+
+			});
+
+
+
+
+
+			//调用示例
+
+
+
+			$('#add').on('click', function() {
+				var aaa = '<div id="code"></div>'
+				layer.alert(aaa, {
+					type: 1,
+					title: '二维码',
+					shadeClose: true,
+					area: ['300px', '300px']
+				})
+				$('#code').qrcode(id)
+
+			});
+
+			var id = getParam('id')
+
+
+
+			$('#address').html(id)
+			$('#address').attr('href', 'wallet.html?id=' + id)
+			// $('#addressss').qrcode(id)
+
+			jQuery('#addressss').qrcode({
+				render: "canvas", //也可以替换为table
+				foreground: "#3185ee",
+				background: "#FFF",
+				text: getParam('id')
+			});
+
+
+			var vum2 = new Vue({
+				el: '#transaction',
+				data: {
+					datas: "",
+				},
+				beforeCreate: function() {
+					$.ajax({
+						type: 'Get',
+						url: server_url + "api/v2/wallets/" + id,
+						success: function(data) {
+							vum2.datas = data.data;
+							$('._transactions').css('background', '#fff')
+						}
+					})
+				}
+			})
+
+
+
+			var vum3 = new Vue({
+				el: '#fasong',
+				data: {
+					datas: "",
+				},
+				beforeCreate: function() {
+					$.ajax({
+						type: 'Get',
+						url: server_url + "api/v2/transactions?recipientId=" + id + "&limit=1",
+
+						success: function(data) {
+							vum3.datas = data.meta.totalCount;
+						}
+					})
+				}
+			})
+			var vum4 = new Vue({
+				el: '#shoudao',
+				data: {
+					datas: "",
+				},
+				beforeCreate: function() {
+					$.ajax({
+						type: 'Get',
+						url: server_url + "api/v2/transactions?senderId=" + id + "&limit=1",
+
+						success: function(data) {
+							vum4.datas = data.meta.totalCount;
+						}
+					})
+				}
+			})
+
+			//transactions(0)
+
+			urlpage = 1
+			funcname = 'transactions'
+
+			function qpage() {
+				if (urlpage <= 1) {
+					return false
+				}
+				var page = urlpage - 1
+				eval(funcname + "(" + page + ")")
+				urlpage = urlpage - 1
+			}
+
+			function hpage() {
+				var page = urlpage + 1
+				eval(funcname + "(" + page + ")")
+				urlpage = urlpage + 1
+			}
+
+			function transactions(page) { //全部
+				$('._transactions').css('background', '#fff')
+				$('._senderId').css('background', '')
+				$('._recipientId').css('background', '')
+				funcname = 'transactions'
+				if (page == 0) {
+					page = 1
+				}
+
+				datares("api/v2/wallets/" + id + "/transactions?orderBy=timestamp:desc&page=" + page + "&limit=10")
+
+			}
+
+			function senderId(page) { //发送
+				$('._senderId').css('background', '#fff')
+				$('._transactions').css('background', '')
+				$('._recipientId').css('background', '')
+				funcname = 'senderId'
+				datares("api/v2/transactions?senderId=" + id + "&orderBy=timestamp:desc&limit=10&offset=" + page)
+
+
+			}
+
+			function recipientId(page) { //收到
+				$('._recipientId').css('background', '#fff')
+				$('._transactions').css('background', '')
+				$('._senderId').css('background', '')
+				funcname = 'recipientId'
+				datares("api/v2/transactions?recipientId=" + id + "&orderBy=timestamp:desc&limit=10&offset=" + page)
+			}
+			vum5 = new Vue({
+				el: '#transactions',
+				data: {
+					datas: "",
+				},
+				beforeCreate: function() {
+					$.ajax({
+						type: 'Get',
+						url: server_url + "api/v2/wallets/" + id + "/transactions?orderBy=timestamp:desc&limit=10",
+						success: function(data) {
+							for (var i = 0; i < data.data.length; i++) {
+								if (data.data[i].recipient == id) {
+									data.data[i].recipientId = true
+								} else {
+									data.data[i].recipientId = false
+								}
+
+							}
+							vum5.datas = data.data;
+						}
+					})
+				}
+			})
+
+			function datares(url) {
+				$.ajax({
+					type: 'Get',
+					url: server_url + url,
+					success: function(data) {
+						// vum5.datas = data.transactions;
+						// console.log(vum5.datas)
+						for (var i = 0; i < data.data.length; i++) {
+							if (data.data[i].recipient == id) {
+								data.data[i].recipientId = true
+							} else {
+								data.data[i].recipientId = false
+							}
+
+						}
+						vum5.$set(vum5.$data, 'datas', data.data)
+						vum5.$forceUpdate();
+					}
+				})
+			}
+		</script>
+
+
+	</body>
+
+</html>
